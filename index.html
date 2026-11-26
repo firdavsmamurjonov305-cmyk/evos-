@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#e31837">
+  <title>EVOS — Mazali lahzalar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#"><span class="brand-mark">E</span><span>EVOS</span></a>
+    <div class="header-note"><i></i> Har kuni 10:00–23:00</div>
+    <button class="admin-open" id="adminOpen">⚙ Kirish</button>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy"><p class="eyebrow">YANGI TA'MLAR SIZ UCHUN</p><h1>Bugun nima<br><span>yeymiz?</span></h1><p class="hero-description">Sevimli taomlaringizni tanlang, savatga qo‘shing va buyurtmangizni rasmiylashtiring.</p><a class="hero-link" href="#menu">Menyuni ko‘rish <b>↓</b></a></div>
+      <div class="hero-art" aria-hidden="true"><div class="hero-orbit"></div><div class="hero-food">🍔</div><div class="floating-chip chip-one">🍟</div><div class="floating-chip chip-two">🥤</div><div class="hero-sticker">MAZALI<br>VA TEZ!</div></div>
+    </section>
+    <section class="menu-section" id="menu">
+      <div class="section-heading"><div><p class="eyebrow">BIZNING MENYU</p><h2>Ta'mingizga mosini tanlang</h2></div><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Taom qidirish..." aria-label="Taom qidirish"></label></div>
+      <nav class="categories" id="categories" aria-label="Menyu kategoriyalari"></nav>
+      <div class="menu-grid" id="menuGrid"></div><p class="empty-state" id="emptyState" hidden>Hech narsa topilmadi. Boshqa nom bilan qidirib ko‘ring.</p>
+    </section>
+    <section class="order-section" id="order">
+      <div class="cart-panel">
+        <div class="cart-title"><div><p class="eyebrow">BUYURTMANGIZ</p><h2>Savat <span id="cartCount" class="count-badge">0</span></h2></div><span class="cart-illustration">🛍️</span></div>
+        <div id="cartItems" class="cart-items"><div class="cart-empty">🧺<span>Savatingiz hozircha bo‘sh</span><small>Menyudan yoqqan taomingizni tanlang</small></div></div>
+        <div class="promo-area"><label for="promoInput">Promo-kod</label><div class="promo-row"><input id="promoInput" placeholder="Masalan: EVOS10"><button id="applyPromo">Qo‘llash</button></div><p id="promoMessage" class="promo-message">EVOS10 kodi bilan 10% chegirma oling.</p></div>
+        <div class="total-lines"><div><span>Mahsulotlar</span><strong id="subtotal">0 so‘m</strong></div><div id="discountRow" class="discount-row" hidden><span>Chegirma (10%)</span><strong id="discount">−0 so‘m</strong></div><div class="grand-total"><span>Jami</span><strong id="total">0 so‘m</strong></div></div>
+        <button id="checkoutButton" class="checkout-button" disabled>Buyurtmani rasmiylashtirish <span>→</span></button><p class="checkout-note">Buyurtma cheki rasmiylashtirishdan oldin ko‘rsatiladi.</p>
+      </div>
+    </section>
+  </main>
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">E</span><span>EVOS</span></a><span>Yaxshi ta'm, yaxshi kayfiyat. ❤️</span><span>© 2026 EVOS</span></footer>
+  <div class="modal-backdrop" id="adminModal" hidden><section class="modal-card admin-card" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+    <button class="modal-close" data-close="adminModal" aria-label="Yopish">×</button>
+    <div id="adminLoginView"><p class="eyebrow">BOSHQARUV</p><h2 id="adminTitle">Admin panelga kirish</h2><p class="modal-subtitle">Davom etish uchun login va parolni kiriting.</p>
+      <form id="adminLoginForm" class="admin-form"><label for="adminUsername">Login</label><input id="adminUsername" required autocomplete="username" placeholder="Login"><label for="adminPassword">Parol</label><input id="adminPassword" type="password" required autocomplete="current-password" placeholder="Parol"><p id="loginError" class="form-error"></p><button class="checkout-button">Kirish <span>→</span></button></form>
+      <p class="demo-hint">Demo kirish: <strong>admin</strong> / <strong>admin</strong></p>
+    </div>
+    <div id="adminDashboard" hidden><p class="eyebrow">BOSHQARUV</p><h2>Admin panel</h2><p class="modal-subtitle">Menyu va buyurtmalar bo‘yicha qisqa ma'lumot.</p>
+      <div class="admin-stats"><div><strong id="adminProductCount">0</strong><span>Menyu mahsulotlari</span></div><div><strong id="adminOrderCount">0</strong><span>Buyurtmalar</span></div></div>
+      <form id="addProductForm" class="admin-form add-product-form"><h3>Yangi mahsulot qo‘shish</h3><label for="newProductName">Mahsulot nomi</label><input id="newProductName" required maxlength="45" placeholder="Masalan: Maxsus lavash"><div class="form-columns"><div><label for="newProductPrice">Narxi (so‘m)</label><input id="newProductPrice" type="number" min="1000" step="500" required placeholder="35000"></div><div><label for="newProductCategory">Kategoriya</label><select id="newProductCategory"><option>Lavash</option><option>Burger</option><option>Pizza</option><option>Snaklar</option><option>Ichimliklar</option><option>Shirinliklar</option></select></div></div><button class="checkout-button">Mahsulot qo‘shish <span>+</span></button></form>
+      <button class="logout-button" id="adminLogout">Paneldan chiqish</button><p class="demo-hint">Bu statik demo: haqiqiy sayt uchun admin autentifikatsiyasi server tomonida himoyalanishi kerak.</p>
+    </div>
+  </section></div>
+  <div class="modal-backdrop" id="receiptModal" hidden><section class="modal-card receipt-card" role="dialog" aria-modal="true" aria-labelledby="receiptTitle">
+    <button class="modal-close no-print" data-close="receiptModal" aria-label="Yopish">×</button><div class="receipt-brand"><span class="brand-mark">E</span><span>EVOS</span></div><p class="eyebrow">BUYURTMA CHEKI</p><h2 id="receiptTitle">Rahmat!</h2><p class="receipt-date" id="receiptDate"></p><div id="receiptItems" class="receipt-items"></div>
+    <div class="receipt-total-lines"><div><span>Mahsulotlar</span><strong id="receiptSubtotal"></strong></div><div id="receiptDiscountRow" hidden><span>Chegirma (10%)</span><strong id="receiptDiscount"></strong></div><div class="grand-total"><span>To‘lov uchun</span><strong id="receiptTotal"></strong></div></div>
+    <p class="receipt-thanks">Yoqimli ishtaha! 😋</p><div class="receipt-actions no-print"><button id="printReceipt" class="print-button">Chekni chop etish</button><button id="finishOrder" class="checkout-button">Yopish <span>✓</span></button></div>
+  </section></div>
+  <script>
+    const groups = [
+      ["Lavash",32000,"🌯","Tovuqli lavash|Mol go‘shtli lavash|Pishloqli lavash|Achchiq lavash|Mini lavash|Katta lavash|Tandir lavash|Lavash combo|Pishloqli mol go‘shtli lavash|Fit lavash"],
+      ["Burger",30000,"🍔","Klassik burger|Cheeseburger|Tovuqli burger|Dabl burger|Achchiq burger|BBQ burger|Mini burger|Baliqli burger|Qo‘ziqorinli burger|Burger combo"],
+      ["Pizza",58000,"🍕","Margarita pizza|Pepperoni pizza|Tovuqli pizza|To‘rt pishloqli pizza|Go‘shtli pizza|Sabzavotli pizza|BBQ pizza|Qo‘ziqorinli pizza|Mini pepperoni pizza|Maxsus EVOS pizza"],
+      ["Snaklar",15000,"🍟","Fri kartoshkasi|Katta fri|Naggets (6 dona)|Naggets (9 dona)|Pishloqli tayoqchalar|Piyoz halqalari|Tovuq qanotlari|Qarsildoq tovuq|Kartoshka bo‘laklari|Sezar salati|Sabzavotli salat"],
+      ["Ichimliklar",9000,"🥤","Cola 0.5 L|Cola 1 L|Fanta 0.5 L|Sprite 0.5 L|Muzli choy|Mineral suv 0.5 L|Oddiy suv 0.5 L|Amerikano|Kapuchino|Milkshake vanilli|Milkshake shokoladli|Limonad|Apelsin sharbati|Choy"],
+      ["Shirinliklar",16000,"🍰","Shokoladli muffin|Chizkeyk|Brauni|Donut|Asalli tort|Muzqaymoq|Shokoladli kruassan|Mevali tart|Tiramisu|Pankeyk"]
+    ];
+    const productPhotos = {
+      "Lavash": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/5d/Handmade_Chicken_Shawarma_Wrap_-_Lavash.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/8/8e/Chicken_Shawarma_Wrap_-_Lavash_2024-09-11.jpg",
+        "https://pd.w.org/2026/07/8636a6d0de1bdd797.99183133-2048x1536.jpg",
+        "https://live.staticflickr.com/2625/3711699258_9a53f817b8.jpg",
+        "https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvYTAxOS1qYWt1YmstMDU1OC1oZWFsdGh5LXZlZ2V0YXJpYW4td3JhcC13aXRoLXNwaW5hY2gzLmpwZw.jpg",
+        "https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvYTAxOS1qYWt1YmstMDUxMC1oZWFsdGh5LXZlZ2V0YXJpYW4td3JhcC13aXRoLXNwaW5hY2gyLmpwZw.jpg",
+        "https://pd.w.org/2026/04/59369ce0a23cb3b04.41824266-1536x2048.jpg",
+        "https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvbnMxNjgwNC1pbWFnZS1rd3lyejBuZy5qcGc.jpg",
+        "https://pd.w.org/2026/01/216967b3639ae326.63206282-1350x2048.jpeg",
+        "https://pd.w.org/2025/01/94967901555caebd7.38630773-1536x2048.jpg"
+      ],
+      "Burger": [
+        "https://cdn.stocksnap.io/img-thumbs/960w/6M8TLM10UT.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/e/eb/Hamburger_%28Burger_Bar%29.jpg",
+        "https://live.staticflickr.com/642/22520334943_921f46d179_b.jpg",
+        "https://live.staticflickr.com/1481/25039204229_f5d0b6c857_b.jpg",
+        "https://live.staticflickr.com/1/137538_a993542d63.jpg",
+        "https://live.staticflickr.com/1/137537_32d21583e0.jpg",
+        "https://live.staticflickr.com/8275/30281669575_6c60e27a3f_b.jpg",
+        "https://live.staticflickr.com/7528/16012072741_b2b3d409c4_b.jpg",
+        "https://live.staticflickr.com/4721/39736734345_4d87611f39_b.jpg",
+        "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80"
+      ],
+      "Pizza": [
+        "https://cdn.stocksnap.io/img-thumbs/960w/R0YJRQ45E0.jpg",
+        "https://cdn.stocksnap.io/img-thumbs/960w/R926LU1YEA.jpg",
+        "https://cdn.stocksnap.io/img-thumbs/960w/OOQ82GVL2F.jpg",
+        "https://cdn.stocksnap.io/img-thumbs/960w/TLZPJXV6JO.jpg",
+        "https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvYTAxOS1qYWt1YmstMDkzMi1pdGFsaWFuLXBpenphLXNhbGFtaS5qcGc.jpg",
+        "https://live.staticflickr.com/8769/18092872879_7b093039ed_b.jpg",
+        "https://live.staticflickr.com/7328/9550569119_163c96ff85_b.jpg",
+        "https://live.staticflickr.com/3680/9550569905_4743020635_b.jpg",
+        "https://live.staticflickr.com/8384/8546078359_04b7732570_b.jpg",
+        "https://live.staticflickr.com/7331/27505724630_cb4641419d_b.jpg"
+      ],
+      "Snaklar": [
+        "https://live.staticflickr.com/8108/28797740110_7375c09aee_b.jpg",
+        "https://cdn.stocksnap.io/img-thumbs/960w/G7ZACZQ6O4.jpg",
+        "https://cdn.stocksnap.io/img-thumbs/960w/RY64JVIGWS.jpg",
+        "https://live.staticflickr.com/65535/53104425737_093b8ee58d_b.jpg",
+        "https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcHgxMDM5ODE0LWltYWdlLWt3dndnYTJhLmpwZw.jpg",
+        "https://images.rawpixel.com/editor_1024/cHJpdmF0ZS9zdGF0aWMvaW1hZ2Uvd2Vic2l0ZS8yMDIyLTA0L2xyL3B4Njk4OTY1LWltYWdlLWt3dnY1b2JsLmpwZw.jpg",
+        "https://images.rawpixel.com/editor_1024/cHJpdmF0ZS9zdGF0aWMvaW1hZ2Uvd2Vic2l0ZS8yMDIyLTA0L2xyL2ZyZm9vZF93ZXN0ZXJuX2RpbmVfYm9obS1pbWFnZS1reWJiajNmbC5qcGc.jpg",
+        "https://images.rawpixel.com/editor_1024/cHJpdmF0ZS9zdGF0aWMvaW1hZ2Uvd2Vic2l0ZS8yMDIyLTA0L2xyL3B4MTAzOTgyMy1pbWFnZS1rd3Z3Z2pncS5qcGc.jpg",
+        "https://pd.w.org/2026/09/3586aa90d68ac4b38.94432608-1536x2048.jpg",
+        "https://pd.w.org/2026/06/3646a2bf1e1795cb0.12323070-1536x2048.jpeg",
+        "https://pd.w.org/2026/08/656a82d2ca0705e8.17434803-1536x2048.jpeg"
+      ],
+      "Ichimliklar": [
+        "https://live.staticflickr.com/1893/43522180855_b4a694a201_b.jpg",
+        "https://live.staticflickr.com/341/19765731068_a917e3e1b6_b.jpg",
+        "https://live.staticflickr.com/1960/44414516194_38f83c7ece_b.jpg",
+        "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=700&q=80",
+        "https://cdn.stocksnap.io/img-thumbs/960w/86PGRUBGDN.jpg",
+        "https://cdn.stocksnap.io/img-thumbs/960w/XSV43C95FJ.jpg",
+        "https://cdn.stocksnap.io/img-thumbs/960w/UR1JSQIAUN.jpg",
+        "https://cdn.stocksnap.io/img-thumbs/960w/VWZSB0VCZ8.jpg",
+        "https://cdn.stocksnap.io/img-thumbs/960w/HKVEPULXQZ.jpg",
+        "https://live.staticflickr.com/2617/4169563191_d54751f72b_b.jpg",
+        "https://live.staticflickr.com/5534/10370282544_4814773e00_b.jpg",
+        "https://live.staticflickr.com/8543/29183443693_b793d66aa8_b.jpg",
+        "https://live.staticflickr.com/3905/19265315782_d8858e4d07_b.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/1/14/Milkshake_beverage_strawberry_drink-1021027.jpg"
+      ],
+      "Shirinliklar": [
+        "https://live.staticflickr.com/5671/23915545221_fb12708890_b.jpg",
+        "https://live.staticflickr.com/5480/29971009534_5188549619_b.jpg",
+        "https://live.staticflickr.com/2830/33934220860_93b10ea4f7_b.jpg",
+        "https://live.staticflickr.com/912/42261360291_f75d129a4b_b.jpg",
+        "https://live.staticflickr.com/3360/4563213268_3485568ecc_b.jpg",
+        "https://live.staticflickr.com/4459/37085969454_70d8256d5b_b.jpg",
+        "https://live.staticflickr.com/5813/30127978380_ee55410817_b.jpg",
+        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80",
+        "https://live.staticflickr.com/34/111420263_a19986be78_b.jpg",
+        "https://cdn.stocksnap.io/img-thumbs/960w/32X9HJRG2N.jpg"
+      ]
+    };
+    const products = groups.flatMap(([category, basePrice, emoji, names]) => names.split("|").map((name, i) => ({
+      name, category, emoji, image: productPhotos[category][i], price: basePrice + (i % 4) * 3000,
+      description: `${category} turkumidan yangi va mazali tanlov`
+    })));
+    const cart = new Map();
+    const categories = ["Barchasi", ...groups.map(group => group[0])];
+    let activeCategory = "Barchasi", promoApplied = false, orderCount = 0;
+    const money = value => `${Math.round(value).toLocaleString("uz-UZ")} so‘m`;
+    const $ = id => document.getElementById(id);
+    function escapeHTML(value) { return String(value).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+    function renderCategories() {
+      $("categories").innerHTML = categories.map(category => `<button class="category-button${category === activeCategory ? " active" : ""}" data-category="${escapeHTML(category)}">${escapeHTML(category)}</button>`).join("");
+    }
+    function renderProducts() {
+      const query = $("searchInput").value.trim().toLocaleLowerCase("uz");
+      const visible = products.map((product,index) => ({...product,index})).filter(p =>
+        (activeCategory === "Barchasi" || p.category === activeCategory) && `${p.name} ${p.description}`.toLocaleLowerCase("uz").includes(query));
+      $("menuGrid").innerHTML = visible.map(p => `<article class="product-card"><div class="product-art"><img class="product-photo" src="${p.image || (productPhotos[p.category] ? productPhotos[p.category][0] : productPhotos.Lavash[0])}" alt="${escapeHTML(p.name)}" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="product-emoji" hidden>${p.emoji}</span><span class="product-category">${escapeHTML(p.category)}</span></div><div class="product-info"><h3>${escapeHTML(p.name)}</h3><p>${escapeHTML(p.description)}</p><div class="product-bottom"><strong>${money(p.price)}</strong><button class="add-button" data-add="${p.index}" aria-label="Savatga qo‘shish">+</button></div></div></article>`).join("");
+      $("emptyState").hidden = visible.length > 0;
+    }
+    function renderCart() {
+      const items = [...cart.entries()], count = items.reduce((s,[,q]) => s+q,0);
+      const subtotal = items.reduce((s,[i,q]) => s+products[i].price*q,0), discount = promoApplied ? Math.round(subtotal*.1) : 0;
+      $("cartCount").textContent = count; $("subtotal").textContent = money(subtotal);
+      $("discount").textContent = `−${money(discount)}`; $("discountRow").hidden = !promoApplied || !count;
+      $("total").textContent = money(subtotal-discount); $("checkoutButton").disabled = !count;
+      $("cartItems").innerHTML = items.length ? items.map(([i,q]) => {
+        const p=products[i]; return `<div class="cart-item"><span class="cart-emoji">${p.emoji}</span><div class="cart-item-info"><strong>${escapeHTML(p.name)}</strong><small>${money(p.price)}</small></div><div class="quantity-control"><button data-quantity="${i}" data-change="-1">−</button><span>${q}</span><button data-quantity="${i}" data-change="1">+</button></div><strong class="cart-line-price">${money(p.price*q)}</strong></div>`;
+      }).join("") : '<div class="cart-empty">🧺<span>Savatingiz hozircha bo‘sh</span><small>Menyudan yoqqan taomingizni tanlang</small></div>';
+    }
+    function setModal(id, open) {
+      $(id).hidden = !open;
+      document.body.classList.toggle("modal-open", [...document.querySelectorAll(".modal-backdrop")].some(m => !m.hidden));
+    }
+    function applyPromo() {
+      const value=$("promoInput").value.trim().toUpperCase(), msg=$("promoMessage");
+      promoApplied=value==="EVOS10";
+      msg.textContent=promoApplied ? "EVOS10 qo‘llandi — buyurtmangizga 10% chegirma!" : value ? "Promo-kod noto‘g‘ri. EVOS10 kodini sinab ko‘ring." : "Promo-kodni kiriting. EVOS10 — 10% chegirma.";
+      msg.className=`promo-message${promoApplied?" success":value?" error":""}`; renderCart();
+    }
+    function completeOrder() {
+      const items=[...cart.entries()]; if(!items.length) return;
+      const subtotal=items.reduce((s,[i,q])=>s+products[i].price*q,0), discount=promoApplied?Math.round(subtotal*.1):0;
+      $("receiptItems").innerHTML=items.map(([i,q])=>`<div><span>${escapeHTML(products[i].name)} × ${q}</span><strong>${money(products[i].price*q)}</strong></div>`).join("");
+      $("receiptSubtotal").textContent=money(subtotal); $("receiptDiscount").textContent=`−${money(discount)}`;
+      $("receiptDiscountRow").hidden=!promoApplied; $("receiptTotal").textContent=money(subtotal-discount);
+      $("receiptDate").textContent=new Date().toLocaleString("uz-UZ");
+      orderCount++; $("adminOrderCount").textContent=orderCount; setModal("receiptModal",true);
+      cart.clear(); promoApplied=false; $("promoInput").value=""; $("promoMessage").textContent="EVOS10 kodi bilan 10% chegirma oling.";
+      $("promoMessage").className="promo-message"; renderCart();
+    }
+    renderCategories(); renderProducts(); renderCart();
+    $("categories").addEventListener("click",e=>{const b=e.target.closest("[data-category]");if(!b)return;activeCategory=b.dataset.category;renderCategories();renderProducts();});
+    $("menuGrid").addEventListener("click",e=>{const b=e.target.closest("[data-add]");if(!b)return;const i=Number(b.dataset.add);cart.set(i,(cart.get(i)||0)+1);renderCart();$("order").scrollIntoView({behavior:"smooth",block:"nearest"});});
+    $("cartItems").addEventListener("click",e=>{const b=e.target.closest("[data-quantity]");if(!b)return;const i=Number(b.dataset.quantity),q=(cart.get(i)||0)+Number(b.dataset.change);if(q<=0)cart.delete(i);else cart.set(i,q);renderCart();});
+    $("searchInput").addEventListener("input",renderProducts); $("applyPromo").addEventListener("click",applyPromo);
+    $("promoInput").addEventListener("keydown",e=>{if(e.key==="Enter")applyPromo();}); $("checkoutButton").addEventListener("click",completeOrder);
+    $("adminOpen").addEventListener("click",()=>{$("adminLoginView").hidden=false;$("adminDashboard").hidden=true;$("loginError").textContent="";setModal("adminModal",true);});
+    $("adminLoginForm").addEventListener("submit",e=>{e.preventDefault();if($("adminUsername").value.trim()!=="admin"||$("adminPassword").value!=="admin"){$("loginError").textContent="Login yoki parol xato. Qayta urinib ko‘ring.";return;}$("adminLoginView").hidden=true;$("adminDashboard").hidden=false;$("adminProductCount").textContent=products.length;$("adminOrderCount").textContent=orderCount;});
+    $("addProductForm").addEventListener("submit",e=>{e.preventDefault();const name=$("newProductName").value.trim(),price=Number($("newProductPrice").value),category=$("newProductCategory").value;if(!name||!Number.isFinite(price)||price<1000)return;products.push({name,price,category,emoji:category==="Ichimliklar"?"🥤":category==="Shirinliklar"?"🍰":category==="Snaklar"?"🍟":"🍽️",description:"Yangi qo‘shilgan mahsulot"});renderCategories();renderProducts();$("adminProductCount").textContent=products.length;e.target.reset();});
+    $("adminLogout").addEventListener("click",()=>{$("adminLoginForm").reset();$("adminLoginView").hidden=false;$("adminDashboard").hidden=true;});
+    $("printReceipt").addEventListener("click",()=>window.print()); $("finishOrder").addEventListener("click",()=>setModal("receiptModal",false));
+    document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>setModal(b.dataset.close,false)));
+    document.querySelectorAll(".modal-backdrop").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)setModal(m.id,false);}));
+    document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".modal-backdrop").forEach(m=>{if(!m.hidden)setModal(m.id,false);});});
+  </script>
+</body>
+</html>
